@@ -3,6 +3,10 @@
   "displayName": "jrCoder",
   "description": "A VSCode extension for GPT-based code generation and repository analysis.",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samuelyoo/jrcoder.git"
+  },
   "engines": {
     "vscode": "^1.96.0"
   },
