@@ -1,0 +1,71 @@
+{
+  "name": "jrcoder",
+  "displayName": "jrCoder",
+  "description": "A VSCode extension for GPT-based code generation and repository analysis.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:jrcoder.generateCode",
+    "onCommand:jrcoder.analyzeRepo"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "jrcoder.generateCode",
+        "title": "jrCoder: Generate Code"
+      },
+      {
+        "command": "jrcoder.analyzeRepo",
+        "title": "jrCoder: Analyze Repository"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "jrCoder Configuration",
+      "properties": {
+        "jrcoder.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API Key for GPT4"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "build": "tsc && esbuild src/extension.ts --bundle --outfile=dist/extension.js --platform=node --external:vscode --format=cjs",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.96.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.16.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "openai": "^4.78.0"
+  }
+}
