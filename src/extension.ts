@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         // Initialize OpenAI
         const openai = new OpenAI({
-			apiKey: 'YOUR_KEY'
+			apiKey: apiKey.trim()
 		});
 
         // Create a chat completion request to GPT-4
@@ -111,7 +111,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         // Summarize with GPT-4
         const openai = new OpenAI({
-			apiKey: 'YOUR_KEY'
+			apiKey: apiKey.trim()
 		});
 
         // Because GPT-4 has a token limit, consider doing multi-pass summarization
